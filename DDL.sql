@@ -36,7 +36,7 @@ VALUES
 CREATE OR REPLACE TABLE Users (
     userID int not NULL AUTO_INCREMENT,
     name varchar(50) not NULL,
-    email varchar(50) not NULL,
+    email varchar(89) not NULL,
     PRIMARY KEY (userID)
 );
 
