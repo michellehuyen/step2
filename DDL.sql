@@ -7,22 +7,22 @@ SET AUTOCOMMIT = 0;
 
 -- Create Books table
 CREATE OR REPLACE TABLE Books (
-    BookID int NOT NULL AUTO_INCREMENT,
-    Title varchar(50),
-    Author varchar(50),
-    Genre varchar(50),
-    Price decime(19,2),
-    Status varchar(50),
-    PRIMARY KEY (BookID)
+    bookID int NOT NULL AUTO_INCREMENT,
+    title varchar(50),
+    author varchar(50),
+    genre varchar(50),
+    price decimal(6,2),
+    status varchar(50),
+    PRIMARY KEY (bookID)
 );
 
 -- Insert values into the Books table
 INSERT INTO Books (
-    Title,
-    Author,
-    Genre,
-    Price,
-    Status
+    title,
+    author,
+    genre,
+    price,
+    status
 )
 VALUES
 (
@@ -34,16 +34,16 @@ VALUES
 
 -- Create Users table
 CREATE OR REPLACE TABLE Users (
-    UserID int not NULL AUTO_INCREMENT,
-    Name varchar(50) not NULL,
-    Email varchar(50) not NULL,
-    PRIMARY KEY (UserID)
+    userID int not NULL AUTO_INCREMENT,
+    name varchar(50) not NULL,
+    email varchar(50) not NULL,
+    PRIMARY KEY (userID)
 );
 
 -- Insert values into the Users table
 INSERT INTO Users (
-    Name,
-    Email
+    name,
+    email
 )
 VALUES
 (
@@ -53,38 +53,38 @@ VALUES
 
 -- Create Orders table
 CREATE OR REPLACE TABLE Orders (
-    OrderID int not NULL AUTO_INCREMENT,
-    UserID int not NULL,
-    BookID int not NULL,
-    CustomerName varchar(50) not NULL,
-    AddressLine1 varchar(50) not NULL,
-    AddressLine2 varchar(50),
-    City varchar(50) not NULL,
-    State varchar(50) not NULL,
-    PostalCode varchar(50) not NULL,
-    OrderDate datetime not NULL,
-    OrderStatus varchar(50) not NULL,
-    Quantity int not NULL,
-    TotalDue decimal(19,2) not NULL,
-    PaymentMethod varchar(50) not NULL,
-    PRIMARY KEY (OrderID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+    orderID int not NULL AUTO_INCREMENT,
+    userID int not NULL,
+    bookID int not NULL,
+    customerName varchar(50) not NULL,
+    addressLine1 varchar(50) not NULL,
+    addressLine2 varchar(50),
+    city varchar(50) not NULL,
+    state varchar(50) not NULL,
+    postalCode varchar(50) not NULL,
+    orderDate datetime not NULL,
+    orderStatus varchar(50) not NULL,
+    quantity int not NULL,
+    totalDue decimal(19,2) not NULL,
+    paymentMethod varchar(50) not NULL,
+    PRIMARY KEY (orderID),
+    FOREIGN KEY (userID) REFERENCES Users(userID),
+    FOREIGN KEY (bookID) REFERENCES Books(bookID)
 );
 
 -- Insert values into the Orders table
 INSERT INTO Orders (
-    UserID,
-    BookID,
-    CustomerName,
-    AddressLine1,
-    City,
-    State,
-    PostalCode,
-    OrderDate,
-    OrderStatus,
-    Quantity,
-    TotalDue
+    userID,
+    bookID,
+    customerName,
+    addressLine1,
+    city,
+    state,
+    postalCode,
+    orderDate,
+    orderStatus,
+    quantity,
+    totalDue
 )
 VALUES
 (
@@ -103,23 +103,23 @@ VALUES
 
 -- Create Reviews table
 CREATE OR REPLACE TABLE Reviews (
-    ReviewID int not NULL AUTO_INCREMENT,
-    UserID int not NULL,
-    BookID int not NULL,
-    ReviewName varchar(50) not NULL,
-    Rating int not NULL,
+    reviewID int not NULL AUTO_INCREMENT,
+    userID int not NULL,
+    bookID int not NULL,
+    reviewName varchar(50) not NULL,
+    rating int not NULL,
     Description text not NULL,
-    PRIMARY KEY (ReviewID),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID),
-    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+    PRIMARY KEY (reviewID),
+    FOREIGN KEY (userID) REFERENCES Users(userID),
+    FOREIGN KEY (bookID) REFERENCES Books(bookID)
 );
 
 -- Insert values into the Reviews table
 INSERT INTO Reviews (
-    UserID,
-    BookID,
-    ReviewName,
-    Rating,
+    userID,
+    bookID,
+    reviewName,
+    rating,
     Description
 )
 VALUES
